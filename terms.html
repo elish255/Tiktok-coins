@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - TikTok Coin Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .logo span {
+            color: #fe2c55;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #fe2c55;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #000, #333);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Terms Content */
+        .terms-content {
+            background: white;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 50px;
+        }
+        
+        .terms-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .terms-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 15px;
+        }
+        
+        .last-updated {
+            color: #fe2c55;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            color: #000;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #000;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+        
+        h4 {
+            color: #000;
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .highlight {
+            color: #fe2c55;
+            font-weight: bold;
+        }
+        
+        .subsection {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .info-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .info-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .info-list li:before {
+            content: "—";
+            color: #fe2c55;
+            position: absolute;
+            left: 0;
+        }
+        
+        .numbered-list {
+            list-style-type: decimal;
+            margin: 15px 0 15px 20px;
+        }
+        
+        .numbered-list li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .contact-link {
+            color: #fe2c55;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 30px 0;
+        }
+        
+        .warning-box {
+            background: #fff5f5;
+            border-left: 4px solid #fe2c55;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+            color: #000;
+        }
+        
+        .toc ul {
+            list-style: none;
+            columns: 2;
+        }
+        
+        .toc li {
+            margin-bottom: 10px;
+        }
+        
+        .toc a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .toc a:hover {
+            color: #fe2c55;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #ecf0f1;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .footer-links div h4 {
+            margin-bottom: 15px;
+            color: #fe2c55;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: #fe2c55;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .terms-content {
+                padding: 30px 20px;
+            }
+            
+            .toc ul {
+                columns: 1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .terms-header h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Tik<span>Coin</span> Generator</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="package.html">Packages</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Terms of Service</h1>
+        </div>
+    </section>
+
+    <!-- Terms of Service Content -->
+    <div class="container">
+        <div class="terms-content">
+            <div class="terms-header">
+                <h1></h1>
+                <p class="last-updated">Last updated August 27, 2025</p>
+            </div>
+
+            <!-- Agreement Section -->
+            <div class="section">
+                <h2>AGREEMENT TO OUR LEGAL TERMS</h2>
+                <p>We are TikTok Coin Generator ("Company," "we," "us," "our"), a service provider operating globally.</p>
+                
+                <p>We operate the website <a href="https://www.tiktokcoingenerator.com" class="contact-link">https://www.tiktokcoingenerator.com</a> (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").</p>
+                
+                <p>You can contact us by email at <a href="mailto:officialltikcoin@gmail.com" class="contact-link">officialltikcoin@gmail.com</a>.</p>
+                
+                <p>These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and TikTok Coin Generator, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. <span class="highlight">IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</span></p>
+                
+                <p>Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms from time to time. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.</p>
+                
+                <div class="warning-box">
+                    <p><strong>The Services are intended for users who are at least 18 years old.</strong> Persons under the age of 18 are not permitted to use or register for the Services.</p>
+                </div>
+                
+                <p>We recommend that you print a copy of these Legal Terms for your records.</p>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3>TABLE OF CONTENTS</h3>
+                <ul>
+                    <li><a href="#section1">1. OUR SERVICES</a></li>
+                    <li><a href="#section2">2. INTELLECTUAL PROPERTY RIGHTS</a></li>
+                
+                    <li><a href="#section3">3. PROHIBITED ACTIVITIES</a></li>
+                  
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="section" id="section1">
+                <h2>1. OUR SERVICES</h2>
+                <p>The information provided when using the Services is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Services from other locations do so on their own initiative and are solely responsible for compliance with local laws, if and to the extent local laws are applicable.</p>
+                
+                <p>The Services are not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use the Services. You may not use the Services in a way that would violate the Gramm-Leach-Bliley Act (GLBA).</p>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section" id="section2">
+                <h2>2. INTELLECTUAL PROPERTY RIGHTS</h2>
+                
+                <h3>Our intellectual property</h3>
+                <p>We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services (collectively, the "Content"), as well as the trademarks, service marks, and logos contained therein (the "Marks").</p>
+                
+                <p>Our Content and Marks are protected by copyright and trademark laws (and various other intellectual property rights and unfair competition laws) and treaties in the United States and around the world.</p>
+                
+                <p>The Content and Marks are provided in or through the Services "AS IS" for your personal, non-commercial use or internal business purpose only.</p>
+                
+                <h3>Your use of our Services</h3>
+                <p>Subject to your compliance with these Legal Terms, including the "PROHIBITED ACTIVITIES" section below, we grant you a non-exclusive, non-transferable, revocable license to:</p>
+                
+                <ul class="info-list">
+                    <li>access the Services; and</li>
+                    <li>download or print a copy of any portion of the Content to which you have properly gained access,</li>
+                </ul>
+                
+                <p>solely for your personal, non-commercial use or internal business purpose.</p>
+                
+                <p>Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.</p>
+                
+                <p>If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <a href="mailto:officialltikcoin@gmail.com" class="contact-link">officialltikcoin@gmail.com</a>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.</p>
+                
+                <p>We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.</p>
+                
+                <p>Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.</p>
+                
+                <h3>Your submissions and contributions</h3>
+                <p>Please review this section and the "PROHIBITED ACTIVITIES" section carefully prior to using our Services to understand the (a) rights you give us and (b) obligations you have when you post or upload any content through the Services.</p>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section" id="section5">
+                <h2>3. PROHIBITED ACTIVITIES</h2>
+                <p>You may not access or use the Services for any purpose other than that for which we make the Services available. The Services may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.</p>
+                
+                <p>As a user of the Services, you agree not to:</p>
+                
+                <ul class="info-list">
+                    <li>Systematically retrieve data or other content from the Services to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us.</li>
+                    <li>Trick, defraud, or mislead us and other users, especially in any attempt to learn sensitive account information such as user passwords.</li>
+                    <li>Circumvent, disable, or otherwise interfere with security-related features of the Services, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the Services and/or the Content contained therein.</li>
+                    <li>Disparage, tarnish, or otherwise harm, in our opinion, us and/or the Services.</li>
+                    <li>Use any information obtained from the Services in order to harass, abuse, or harm another person.</li>
+                    <li>Make improper use of our support services or submit false reports of abuse or misconduct.</li>
+                    <li>Use the Services in a manner inconsistent with any applicable laws or regulations.</li>
+                    <li>Engage in unauthorized framing of or linking to the Services.</li>
+                    <li>Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material, including excessive use of capital letters and spamming (continuous posting of repetitive text), that interferes with any party's uninterrupted use and enjoyment of the Services or modifies, impairs, disrupts, alters, or interferes with the use, features, functions, operation, or maintenance of the Services.</li>
+                    <li>Engage in any automated use of the system, such as using scripts to send comments or messages, or using any data mining, robots, or similar data gathering and extraction tools.</l

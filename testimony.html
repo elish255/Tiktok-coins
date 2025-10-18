@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Testimonials - TikTok Coin Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .logo span {
+            color: #fe2c55;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #fe2c55;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #000, #333);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 40px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Testimonials Content */
+        .testimonials-content {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .testimonial-block {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .testimonial-block h2 {
+            color: #000;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .testimonial-block p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .highlight {
+            color: #fe2c55;
+            font-weight: bold;
+        }
+        
+        /* Image Gallery */
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            max-width: 100%;
+            text-align: center;
+        }
+        
+        .gallery-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .gallery-item img:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery-caption {
+            margin-top: 10px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .payment-method {
+            background: white;
+            border: 1px solid #f0f0f0;
+            border-radius: 8px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        
+        .payment-method i {
+            color: #fe2c55;
+            font-size: 1.2rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #000, #333);
+            color: white;
+            padding: 50px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .contact-section h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .contact-section p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-username {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #fe2c55;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #d81e4a;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #fe2c55;
+            color: #fe2c55;
+        }
+        
+        .btn-outline:hover {
+            background: #fe2c55;
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #ecf0f1;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .footer-links div h4 {
+            margin-bottom: 15px;
+            color: #fe2c55;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: #fe2c55;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .testimonial-block {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-section {
+                padding: 30px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Tik<span>Coin</span> Generator</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="package.html">Packages</a></li>
+                        <li><a href="testimony.html">Testimonials</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Customer Testimonials</h1>
+            <p>See what our satisfied customers have to say about our service</p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>REAL CUSTOMER REVIEWS</h1>
+                <p>Don't just take our word for it - hear from our happy customers</p>
+            </div>
+
+            <div class="testimonials-content">
+                <!-- How It Works Section -->
+                <div class="testimonial-block">
+                    <h2>How do you pay and transfer coins?</h2>
+                    <p>All my clients know that I am a personal website developer with the purchase of cheap coins ✕️</p>
+                    <p>And as you noticed in this screenshot, I buy coins at several times cheaper and make money by reselling them 🟡️</p>
+                     <div class="image-gallery">
+                        <!-- Replace these with your own images -->
+                        <div class="gallery-item">
+                            <img src="images/screenshots.jpg" alt="Customer testimonial 1">
+                            <div class="gallery-caption"></div>
+                        </div>
+                    
+                    <!-- Purchase Sequence -->
+                    <div style="margin: 30px 0;">
+                        <h3 style="color: #fe2c55; margin-bottom: 20px;">Purchase Sequence:</h3>
+                        <ol style="padding-left: 20px;">
+                            <li style="margin-bottom: 10px;">I receive payment for coins through your chosen payment system</li>
+                            <li style="margin-bottom: 10px;">You send me a link or username of your TikTok account! (I don't need login and password)</li>
+                            <li style="margin-bottom: 10px;">I buy coins on my website and send them to you. On average, sending takes up to 7-8 minutes</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Testimonials Section -->
+                <div class="testimonial-block">
+                    <h2>And a small part of customer reviews</h2>
+                    
+                    <!-- Image Gallery -->
+                    <div class="image-gallery">
+                        <!-- Replace these with your own images -->
+                        <div class="gallery-item">
+                            <img src="images/testimonial1.jpg" alt="Customer testimonial 1">
+                            <div class="gallery-caption">Customer review from Telegram</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/testimonial2.jpg" alt="Customer testimonial 2">
+                            <div class="gallery-caption">Happy customer feedback</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/testimonial3.jpg" alt="Customer testimonial 3">
+                            <div class="gallery-caption">Successful transaction proof</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/testimonial4.jpg" alt="Customer testimonial 4">
+                            <div class="gallery-caption">Customer satisfaction</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/testimonial5.jpg" alt="Customer testimonial 5">
+                            <div class="gallery-caption">Payment confirmation</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Customer Reviews -->
+                    <div style="margin: 30px 0;">
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                            <p><strong>Customer 1:</strong> "This work. Thank you! Can I buy more?"</p>
+                            <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">- Valeria, 21:29</p>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                            <p><strong>Customer 2:</strong> "I already thought you were a scammer. I'm waiting I hope everything will be fine. I good bro"</p>
+                            <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">- Alex, 00:53</p>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                            <p><strong>Customer 3:</strong> "Perfect, thank you very much!"</p>
+                            <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">- Maria, 21:28</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="testimonial-block">
+                    <h2>Available Payment Methods</h2>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <i class="fab fa-bitcoin"></i>
+                            <span>Crypto</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Revolut</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-university"></i>
+                            <span>Swift Payment</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Bank Cards</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-globe"></i>
+                            <span>Western Union</span>
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center; margin-top: 20px;">
+                        <span class="highlight">✔️ Coin delivery is available for ALL COUNTRIES</span>
+                    </p>
+                </div>
+            </div>
+
+     
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <div>
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="package.html">Packages</a></li>
+                            <li><a href="testimony.html">Testimonials</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 TikTok Coin Generator. This site is not affiliated with TikTok. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Telegram button animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const telegramBtn = document.querySelector('.btn-outline');
+            if (telegramBtn) {
+                telegramBtn.addEventListener('click', function(e) {
+                    // Don't prevent default for actual navigation
+                    // Just add animation
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

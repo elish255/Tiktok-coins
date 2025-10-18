@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages - TikTok Coin Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .logo span {
+            color: #fe2c55;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #fe2c55;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #000, #333);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Profile Section */
+        .profile-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            margin: 30px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .profile-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fe2c55;
+        }
+        
+        .profile-username {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .profile-bio {
+            color: #666;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        /* Packages Section */
+        .packages-section {
+            padding: 40px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h1 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .packages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .package-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .package-card.featured {
+            border: 2px solid #fe2c55;
+            transform: scale(1.03);
+        }
+        
+        .package-card.featured:hover {
+            transform: scale(1.03) translateY(-8px);
+        }
+        
+        .price-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #fe2c55;
+            color: white;
+            padding: 6px 35px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        .package-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .package-header h3 {
+            font-size: 1.4rem;
+            color: #000;
+            margin-bottom: 8px;
+        }
+        
+        .coin-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fe2c55;
+            margin-bottom: 5px;
+        }
+        
+        .price {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.1rem;
+            margin-right: 8px;
+        }
+        
+        .new-price {
+            color: #fe2c55;
+            font-weight: bold;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .package-features li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .package-features li:before {
+            content: "✓";
+            color: #fe2c55;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #fe2c55;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #d81e4a;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #fe2c55;
+            color: #fe2c55;
+        }
+        
+        .btn-outline:hover {
+            background: #fe2c55;
+            color: white;
+        }
+        
+        /* Additional Info Section */
+        .info-section {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 50px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .info-card {
+            text-align: center;
+            padding: 25px;
+        }
+        
+        .info-card i {
+            font-size: 2.5rem;
+            color: #fe2c55;
+            margin-bottom: 20px;
+        }
+        
+        .info-card h3 {
+            color: #000;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .info-card p {
+            color: #555;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #000, #333);
+            color: white;
+            padding: 50px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .contact-section h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .contact-section p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-username {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #ecf0f1;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .footer-links div h4 {
+            margin-bottom: 15px;
+            color: #fe2c55;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: #fe2c55;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .package-card.featured {
+                transform: scale(1);
+            }
+            
+            .package-card.featured:hover {
+                transform: translateY(-8px);
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .packages-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-section {
+                padding: 30px 20px;
+            }
+            
+            .packages-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Tik<span>Coin</span> Generator</div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="package.html">Packages</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Get TikTok Coins at the Lowest Price</h1>
+            <p>Boost your TikTok presence with our affordable coin packages</p>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-section" id="profileSection">
+        <div class="profile-display">
+            <img id="profileAvatar" class="profile-avatar" src="" alt="Profile Picture">
+            <h2 id="profileUsername" class="profile-username">@username</h2>
+            <p id="profileBio" class="profile-bio">Your TikTok profile is ready for coins!</p>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>LOWEST PRICE</h1>
+                <p>Get the best value for your money with our competitive pricing</p>
+            </div>
+
+            <div class="packages-container">
+                <!-- New Package 1 -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Beginner Pack</h3>
+                        <div class="coin-amount">10K</div>
+                        <div class="price">
+                            <span class="new-price">$10</span>
+                        </div>
+                    </div>
+                    <ul class="package-features">
+                        <li>10,000 TikTok Coins</li>
+                        <li>Instant Delivery</li>
+                        <li>24/7 Support</li>
+                        <li>All Countries Supported</li>
+                    </ul>
+                    <a href="buy.html?package=beginner&coins=10000&price=10" class="btn">Buy Now</a>
+                </div>
+
+                <!-- New Package 2 -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Standard Pack</h3>
+                        <div class="coin-amount">25K</div>
+                        <div class="price">
+                            <span class="new-price">$25</span>
+                        </div>
+                    </div>
+                    <ul class="package-features">
+                        <li>25,000 TikTok Coins</li>
+                        <li>Instant Delivery</li>
+                        <li>24/7 Support</li>
+                        <li>All Countries Supported</li>
+                    </ul>
+                    <a href="buy.html?package=standard&coins=25000&price=25" class="btn">Buy Now</a>
+                </div>
+
+                <!-- New Package 3 -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Advanced Pack</h3>
+                        <div class="coin-amount">50K</div>
+                        <div class="price">
+                            <span class="new-price">$50</span>
+                        </div>
+                    </div>
+                    <ul class="package-features">
+                        <li>50,000 TikTok Coins</li>
+                        <li>Instant Delivery</li>
+                        <li>24/7 Support</li>
+                        <li>All Countries Supported</li>
+                    </ul>
+                    <a href="buy.html?package=advanced&coins=50000&price=50" class="btn">Buy Now</a>
+                </div>
+
+                <!-- Package 4 -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Starter Pack</h3>
+                        <div class="coin-amount">75K</div>
+                        <div class="price">
+                            <span class="old-price">$100</span>
+                            <span class="new-price">$75</span>
+                        </div>
+                    </div>
+                    <ul class="package-features">
+                        <li>75,000 TikTok Coins</li>
+                        <li>Instant Delivery</li>
+                        <li>24/7 Support</li>
+                        <li>All Countries Supported</li>
+                    </ul>
+                    <a href="buy.html?package=starter&coins=75000&price=75" class="btn">Buy Now</a>
+                </div>
+
+                <!-- Package 5 -->
+                <div class="package-card featured">
+                    <div class="price-badge">MOST POPULAR</div>
+                    <div class="package-header">
+                        <h3>Popular Choice</h3>
+                        <div class="coin-amount">200K</div>
+                        <div class="price">
+                            <span class="old-price">$180</span>
+                            <span class="new-price">$120</span>
+                        </div>
+                    </div>
+                    <ul class="package-features">
+                        <li>200,000 TikTok Coins</li>
+                        <li>Instant Delivery</li>
+                        <li>24/7 Support</li>
+                        <li>All Countries Supported</li>
+                        <li>Best Value for Money</li>
+                    </ul>
+                    <a href="buy.html?package=popular&coins=200000&price=120" class="btn">Buy Now</a>
+                </div>
+
+                <!-- Package 6 -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Power User</h3>
+                        <div class="coin-amount">500K</div>
+                        <div class="price">
+                            <span class="old-price">$280</span>
+                            <span class="new-price">$200</span>
+                        </div>
+                    </div>
+                    <ul class="package-features">
+                        <li>500,000 TikTok Coins</li>
+                        <li>Instant Delivery</li>
+                        <li>24/7 Support</li>
+                        <li>All Countries Supported</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <a href="buy.html?package=power&coins=500000&price=200" class="btn">Buy Now</a>
+                </div>
+
+                <!-- Package 7 -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Ultimate Pack</h3>
+                        <div class="coin-amount">700K</div>
+                        <div class="price">
+                            <span class="old-price">$350</span>
+                            <span class="new-price">$250</span>
+                        </div>
+                    </div>
+                    <ul class="package-features">
+                        <li>700,000 TikTok Coins</li>
+                        <li>Instant Delivery</li>
+                        <li>24/7 Support</li>
+                        <li>All Countries Supported</li>
+                        <li>Priority Support</li>
+                        <li>Wholesale Discount Eligible</li>
+                    </ul>
+                    <a href="buy.html?package=ultimate&coins=700000&price=250" class="btn">Buy Now</a>
+                </div>
+            </div>
+
+                      <!-- Additional Info Section -->
+            <div class="info-section">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-tags"></i>
+                        <h3>Wholesale Discount</h3>
+                        <p>Wholesale customers receive a 50% discount on all products. Contact us for bulk orders.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>Global Delivery</h3>
+                        <p>Coin delivery is available for ALL COUNTRIES. No restrictions, worldwide service.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>Multiple Payment Methods</h3>
+                        <p>Available payment methods: Crypto, Revolut, Swift Payment, Bank Cards, Western Union</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>Instant Delivery</h3>
+                        <p>Get your coins instantly after payment. No waiting, immediate access to your TikTok coins.</p>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Contact Section -->
+            <div class="contact-section">
+                <h2>Ready to Get Your Coins?</h2>
+                <p>Contact us directly to place your order or for any inquiries about our packages and services.</p>
+                
+                <div class="contact-username">
+                    <i class="fab fa-telegram"></i>tik_coin
+                </div>
+                
+                <a href="https://t.me/tik_coin" class="btn btn-outline">Write Me on Telegram</a>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <div>
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="package.html">Packages</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="testimony.html">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 TikTok Coin Generator. This site is not affiliated with TikTok. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Package selection and animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const buyButtons = document.querySelectorAll('.btn');
+            
+            buyButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Animation effect
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+            
+            // Telegram button special handling
+            const telegramBtn = document.querySelector('.btn-outline');
+            if (telegramBtn) {
+                telegramBtn.addEventListener('click', function(e) {
+                    // Don't prevent default for actual navigation
+                    // Just add animation
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            }
+            
+            // Display validated username and profile picture
+            const validatedUsername = localStorage.getItem('validatedUsername');
+            const profileSection = document.getElementById('profileSection');
+            const profileAvatar = document.getElementById('profileAvatar');
+            const profileUsername = document.getElementById('profileUsername');
+            const profileBio = document.getElementById('profileBio');
+            
+            if (validatedUsername) {
+                profileUsername.textContent = `@${validatedUsername}`;
+                
+                // Generate a placeholder avatar based on username
+                const avatarColors = ['#fe2c55', '#25F4EE', '#000000', '#69C9D0', '#EE1D52'];
+                const colorIndex = validatedUsername.length % avatarColors.length;
+                const avatarColor = avatarColors[colorIndex];
+                
+                // Create a placeholder avatar with first letter
+                const firstLetter = validatedUsername.charAt(0).toUpperCase();
+                profileAvatar.src = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='${avatarColor}' rx='60'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='50' fill='white'>${firstLetter}</text></svg>`;
+                
+                profileBio.textContent = `Coins will be delivered to your TikTok account: @${validatedUsername}`;
+                
+                // Show the profile section
+                profileSection.style.display = 'block';
+            } else {
+                // No validated username, hide the profile section
+                profileSection.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
