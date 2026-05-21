@@ -276,7 +276,6 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            flex-wrap: wrap;
         }
 
         .operator-item {
@@ -408,82 +407,6 @@
             font-size: 0.7rem;
             margin-left: 0.5rem;
             color: #fe2c55;
-        }
-
-        /* Transaction Verification Panel under each operator */
-        .tx-verification-panel {
-            background: #f8fafc;
-            border-radius: 1.2rem;
-            padding: 1rem 1.2rem;
-            margin-top: 1rem;
-            border: 1px solid #e9edf2;
-        }
-
-        .tx-verification-title {
-            font-weight: 700;
-            color: #0c2e3b;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .tx-verification-title i {
-            color: #fe2c55;
-        }
-
-        .tx-input-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .tx-input-group input {
-            flex: 2;
-            min-width: 180px;
-            padding: 10px 14px;
-            border-radius: 2rem;
-            border: 1px solid #ddd;
-            font-family: monospace;
-            font-size: 0.85rem;
-            background: white;
-        }
-
-        .verify-tx-btn {
-            background: #fe2c55;
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 0.8rem;
-        }
-
-        .verify-tx-btn:hover {
-            background: #d81e4a;
-            transform: scale(0.97);
-        }
-
-        .verification-status {
-            margin-top: 10px;
-            font-size: 0.75rem;
-            padding: 6px 10px;
-            border-radius: 2rem;
-            display: inline-block;
-        }
-
-        .status-success {
-            background: #e0f7e8;
-            color: #1e7b48;
-        }
-
-        .status-pending {
-            background: #fff3e0;
-            color: #b95a00;
         }
 
         .toast-msg {
@@ -624,6 +547,7 @@
     </div>
 
     <div class="container">
+        <!-- dynamic order summary (reflects package selected) -->
         <div class="order-snapshot" id="orderSummaryPanel">
             <div class="order-badge">
                 <div>📦 Package: <span id="summaryPackage">Beginner Pack</span></div>
@@ -681,11 +605,11 @@
             </div>
         </div>
 
-        <!-- NJIA ZA MALIPO (USSD / KWA SIMU) with Transaction Verification under each operator -->
+        <!-- NJIA ZA MALIPO (USSD / KWA SIMU) with dynamic TZS amount -->
         <div class="section-card">
             <div class="ussd-header">📱 NJIA ZA MALIPO (USSD / KWA SIMU)<div style="flex:1"></div>💰 Kiasi: <span id="dynamicTzsAmountHeader">14,500 TZS</span></div>
 
-                    <!-- Vodacom -->
+            <!-- Vodacom -->
             <div class="operator-item" id="op-voda">
                 <button class="operator-toggle" onclick="toggleOp('op-voda')">
                     <div class="operator-logo-wrap"><img src="https://brandlogos.net/wp-content/uploads/2025/04/vodacom-logo_brandlogos.net_4uzfe.png" alt="Vodacom"></div>
@@ -698,25 +622,16 @@
                         <li class="step-row"><span class="step-num">2</span><span>Chagua <strong>4. Lipa kwa M-Pesa</strong></span></li>
                         <li class="step-row"><span class="step-num">3</span><span>Chagua <strong>1. Lipa kwa Simu</strong></span></li>
                         <li class="step-row"><span class="step-num">4</span><span>Chagua <strong>1. Weka Namba ya LIPA</strong></span></li>
-                        <li class="step-row"><span class="step-num">5</span><span>Chagua <strong>8. HaloPesa</strong></span></li>
+                        <li class="step-row"><span class="step-num">5</span><span>Chagua <strong>7. HaloPesa</strong></span></li>
                         <li class="step-row highlight"><span class="step-num">6</span><span>Weka Namba ya Merchant: <span class="step-value">251102338</span><button class="copy-btn small-copy" onclick="copySpecificText('251102338', event)">Copy</button></span></li>
                         <li class="step-row"><span class="step-num">7</span><span><strong>Kiasi: <span class="step-value tzs-amount-dynamic" id="vodacomAmount">24,500 TZS</span></strong></span></li>
                         <li class="step-row"><span class="step-num">8</span><span>Weka PIN yako</span></li>
                         <li class="step-row highlight"><span class="step-num">9</span><span>Hakikisha jina <strong>TIKTOK COINS</strong> linaonekana</span></li>
                     </ul>
-                    <!-- Transaction Verification Panel for Vodacom -->
-                    <div class="tx-verification-panel">
-                        <div class="tx-verification-title"><i>🔐</i> Verification ya Malipo (Vodacom)</div>
-                        <div class="tx-input-group">
-                            <input type="text" id="vodacomTxId" placeholder="Weka M-Pesa Transaction ID / Reference" autocomplete="off">
-                            <button class="verify-tx-btn" data-operator="vodacom">Thibitisha & Pata Coins</button>
-                        </div>
-                        <div id="vodacomTxStatus" class="verification-status status-pending" style="display: none;">⏳ Submitting...</div>
-                    </div>
                 </div>
             </div>
 
-            <!-- Airtel -->
+             <!-- Airtel -->
             <div class="operator-item" id="op-airtel">
                 <button class="operator-toggle" onclick="toggleOp('op-airtel')">
                     <div class="operator-logo-wrap"><img src="https://nikulipe.com/wp-content/uploads/2022/09/Airtel_logo_PNG1.png" alt="Airtel"></div>
@@ -730,14 +645,6 @@
                         <li class="step-row highlight"><span class="step-num">3</span><span>Weka Merchant Code: <span class="step-value">251102338</span><button class="copy-btn small-copy" onclick="copySpecificText('251102338', event)">Copy</button></span></li>
                         <li class="step-row"><span class="step-num">4</span><span>Jina: <strong>TIKTOK COINS</strong> → Kiasi: <strong id="airtelAmount">24,500 TZS</strong></span></li>
                     </ul>
-                    <div class="tx-verification-panel">
-                        <div class="tx-verification-title"><i>🔐</i> Verification ya Malipo (Airtel Money)</div>
-                        <div class="tx-input-group">
-                            <input type="text" id="airtelTxId" placeholder="Weka Airtel Transaction ID" autocomplete="off">
-                            <button class="verify-tx-btn" data-operator="airtel">Thibitisha & Pata Coins</button>
-                        </div>
-                        <div id="airtelTxStatus" class="verification-status status-pending" style="display: none;"></div>
-                    </div>
                 </div>
             </div>
 
@@ -755,14 +662,6 @@
                         <li class="step-row highlight"><span class="step-num">3</span><span>Weka Namba: <span class="step-value">251102338</span><button class="copy-btn small-copy" onclick="copySpecificText('251102338', event)">Copy</button></span></li>
                         <li class="step-row"><span class="step-num">4</span><span>Kiasi: <strong id="tigoAmount">24,500 TZS</strong> → Hakikisha jina <strong>TIKTOK COINS</strong></span></li>
                     </ul>
-                    <div class="tx-verification-panel">
-                        <div class="tx-verification-title"><i>🔐</i> Verification ya Malipo (Tigo Pesa)</div>
-                        <div class="tx-input-group">
-                            <input type="text" id="tigoTxId" placeholder="Weka Tigo Transaction ID" autocomplete="off">
-                            <button class="verify-tx-btn" data-operator="tigo">Thibitisha & Pata Coins</button>
-                        </div>
-                        <div id="tigoTxStatus" class="verification-status status-pending" style="display: none;"></div>
-                    </div>
                 </div>
             </div>
 
@@ -784,14 +683,6 @@
                         <li class="step-row"><span class="step-num">7</span><span>Bonyeza <strong>1</strong> kuruhusu muamala</span></li>
                     </ul>
                     <div class="biz-tag">Jina la Biashara: <strong>TIKTOK COINS</strong></div>
-                    <div class="tx-verification-panel">
-                        <div class="tx-verification-title"><i>🔐</i> Verification ya Malipo (Halopesa)</div>
-                        <div class="tx-input-group">
-                            <input type="text" id="haloTxId" placeholder="Weka Transaction Reference" autocomplete="off">
-                            <button class="verify-tx-btn" data-operator="halo">Thibitisha & Pata Coins</button>
-                        </div>
-                        <div id="haloTxStatus" class="verification-status status-pending" style="display: none;"></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -805,7 +696,7 @@
                     <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li></ul></div>
                 </div>
             </div>
-            <div class="copyright"><p>&copy; 2026 TikTok Coin Generator. All rights reserved.</p></div>
+            <div class="copyright"><p>&copy; 2025 TikTok Coin Generator. All rights reserved.</p></div>
         </div>
     </footer>
 
@@ -818,6 +709,7 @@
             if(el) el.classList.toggle('open');
         };
 
+        // Helper toast
         function showToast(msg) {
             const toast = document.getElementById('toastMsg');
             toast.textContent = msg || '✅ Copied!';
@@ -840,39 +732,54 @@
         let coins = parseInt(urlParams.get('coins') || '10000');
         let priceUSD = parseFloat(urlParams.get('price') || '10');
         const validatedUser = localStorage.getItem('validatedUsername') || 'tiktok_user';
-        const USD_TO_TZS = 2450;
 
+        // Exchange rate: 1 USD = 2450 TZS (example realistic rate)
+        const USD_TO_TZS = 2450;
+        let tzsAmount = Math.round(priceUSD * USD_TO_TZS);
+        // Format TZS with commas
+        const formatTZS = (val) => val.toLocaleString('en-TZ') + ' TZS';
+
+        // Update all dynamic TZS fields
         function updateAllTZSFields() {
             const tzsRaw = Math.round(priceUSD * USD_TO_TZS);
             const tzsStr = tzsRaw.toLocaleString('en-TZ') + ' TZS';
             document.getElementById('summaryTZS').innerText = tzsStr;
             document.getElementById('dynamicTzsAmountHeader').innerText = tzsStr;
+            // update each operator amount field
             const ids = ['vodacomAmount', 'airtelAmount', 'tigoAmount', 'haloAmount'];
             ids.forEach(id => {
                 const el = document.getElementById(id);
                 if(el) el.innerText = tzsRaw.toLocaleString('en-TZ') + ' TZS';
             });
-            document.querySelectorAll('.tzs-amount-dynamic').forEach(span => {
-                span.innerText = tzsRaw.toLocaleString('en-TZ') + ' TZS';
-            });
+            // update also hidden step values inside dynamic spans in some cards
+            const allTzsSpans = document.querySelectorAll('.tzs-amount-dynamic');
+            allTzsSpans.forEach(span => { span.innerText = tzsRaw.toLocaleString('en-TZ') + ' TZS'; });
         }
 
+        // map package name display
         function getPackageDisplay(pkg) {
-            const map = { 'beginner': 'Beginner Pack', 'standard': 'Standard Pack', 'advanced': 'Advanced Pack',
-                'starter': 'Starter Pack', 'popular': 'Popular Choice', 'power': 'Power User', 'ultimate': 'Ultimate Pack' };
+            const map = {
+                'beginner': 'Beginner Pack', 'standard': 'Standard Pack', 'advanced': 'Advanced Pack',
+                'starter': 'Starter Pack', 'popular': 'Popular Choice', 'power': 'Power User', 'ultimate': 'Ultimate Pack'
+            };
             return map[pkg] || 'Custom Pack';
         }
 
+        // update order summary & USD amount in USDT card
         function updateOrderUI() {
             document.getElementById('summaryPackage').innerText = getPackageDisplay(packageParam);
             document.getElementById('summaryCoins').innerText = coins.toLocaleString();
             document.getElementById('summaryUSD').innerText = `$${priceUSD}`;
+            const tzsVal = Math.round(priceUSD * USD_TO_TZS);
+            document.getElementById('summaryTZS').innerText = tzsVal.toLocaleString('en-TZ') + ' TZS';
             document.getElementById('dynamicUsdAmount').innerText = `$${priceUSD}`;
             document.getElementById('profileTag').innerHTML = `👤 @${validatedUser}`;
             updateAllTZSFields();
         }
 
+        // --- load package from localStorage or URL ---
         function initFromStorage() {
+            // try to get more accurate from session if needed, but URL takes precedence
             if (!packageParam || packageParam === 'null') {
                 const storedPkg = localStorage.getItem('selectedPackage');
                 if(storedPkg) {
@@ -895,6 +802,7 @@
                 e.preventDefault();
                 usdtCard.classList.toggle('open');
             });
+            usdtCard.classList.remove('open');
         }
 
         // copy USDT address
@@ -906,15 +814,17 @@
             });
         }
 
-        // USDT Tx submission
+        // submit transaction ID demo (just mock success)
         const submitTx = document.getElementById('submitTxIdBtn');
         const txInput = document.getElementById('txIdInput');
         if(submitTx && txInput) {
             submitTx.addEventListener('click', () => {
                 const txVal = txInput.value.trim();
                 if(!txVal) { showToast('⚠️ Please paste a valid Transaction ID'); return; }
+                if(txVal.length < 10) { showToast('⚠️ TxID seems too short, double-check'); return; }
                 showToast(`✅ TxID recorded! Coins will arrive in 5 min.`);
                 txInput.value = '';
+                // optional: simulate redirect or success modal
                 setTimeout(() => {
                     if(confirm('Payment verification received. Coins will be sent to @' + validatedUser)) {
                         window.location.href = 'package.html';
@@ -922,44 +832,6 @@
                 }, 500);
             });
         }
-
-        // Transaction verification for mobile money operators
-        function attachOperatorVerification(operatorId, inputId, statusId) {
-            const btn = document.querySelector(`.verify-tx-btn[data-operator="${operatorId}"]`);
-            if(!btn) return;
-            btn.addEventListener('click', () => {
-                const input = document.getElementById(inputId);
-                const txValue = input?.value.trim();
-                const statusDiv = document.getElementById(statusId);
-                if(!txValue) {
-                    showToast(`⚠️ Tafadhali weka Transaction ID kwa ${operatorId.toUpperCase()}`);
-                    return;
-                }
-                if(statusDiv) {
-                    statusDiv.style.display = 'inline-block';
-                    statusDiv.textContent = '⏳ Inathibitisha...';
-                    statusDiv.className = 'verification-status status-pending';
-                }
-                setTimeout(() => {
-                    if(statusDiv) {
-                        statusDiv.textContent = '✅ Malipo yamethibitishwa! Coins zitatumwa kwa @' + validatedUser;
-                        statusDiv.className = 'verification-status status-success';
-                        input.value = '';
-                        showToast(`✅ Verification successful! Coins will be sent to @${validatedUser}`);
-                        setTimeout(() => {
-                            if(confirm('TikTok coins zimeanza kutumwa. Rudi kwenye Packages?')) {
-                                window.location.href = 'package.html';
-                            }
-                        }, 800);
-                    }
-                }, 1800);
-            });
-        }
-
-        attachOperatorVerification('vodacom', 'vodacomTxId', 'vodacomTxStatus');
-        attachOperatorVerification('airtel', 'airtelTxId', 'airtelTxStatus');
-        attachOperatorVerification('tigo', 'tigoTxId', 'tigoTxStatus');
-        attachOperatorVerification('halo', 'haloTxId', 'haloTxStatus');
 
         initFromStorage();
     </script>
